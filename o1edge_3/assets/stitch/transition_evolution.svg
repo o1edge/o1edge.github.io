@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" width="100%" height="100%">
+  <defs>
+    <style>
+      @keyframes pulseGlow {
+        0% { filter: drop-shadow(0 0 8px #0ff) drop-shadow(0 0 15px #f0f); transform: scale(1); }
+        50% { filter: drop-shadow(0 0 25px #0ff) drop-shadow(0 0 40px #f0f); transform: scale(1.02); }
+        100% { filter: drop-shadow(0 0 8px #0ff) drop-shadow(0 0 15px #f0f); transform: scale(1); }
+      }
+      @keyframes spinSlow {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes spinFastReverse {
+        0% { transform: rotate(360deg); }
+        100% { transform: rotate(0deg); }
+      }
+      @keyframes flowData {
+        0% { stroke-dashoffset: 200; opacity: 0.2; }
+        50% { opacity: 1; }
+        100% { stroke-dashoffset: 0; opacity: 0.2; }
+      }
+      @keyframes crosshairTarget {
+        0% { transform: scale(1.2) rotate(45deg); opacity: 0; }
+        10% { transform: scale(0.9) rotate(0deg); opacity: 1; }
+        20% { transform: scale(1) rotate(0deg); opacity: 1; }
+        90% { transform: scale(1) rotate(0deg); opacity: 1; }
+        100% { transform: scale(1.5) rotate(45deg); opacity: 0; }
+      }
+      @keyframes blink {
+        0%, 96%, 98% { opacity: 1; }
+        97%, 99% { opacity: 0; }
+      }
+
+      .core-glow {
+        transform-origin: 200px 300px;
+        animation: pulseGlow 3s ease-in-out infinite;
+      }
+      .ring-slow {
+        transform-origin: 200px 300px;
+        animation: spinSlow 12s linear infinite;
+      }
+      .ring-fast {
+        transform-origin: 200px 300px;
+        animation: spinFastReverse 3s linear infinite;
+      }
+      .data-pipe {
+        stroke-dasharray: 10 20;
+        animation: flowData 1.5s linear infinite;
+      }
+      .crosshair {
+        transform-origin: 200px 300px;
+        animation: crosshairTarget 3s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+      }
+      .thought-node {
+        animation: blink 3s infinite;
+      }
+    </style>
+    <linearGradient id="cyanMagenta" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffff" />
+      <stop offset="100%" stop-color="#ff00ff" />
+    </linearGradient>
+    <radialGradient id="coreGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="20%" stop-color="#00ffff" />
+      <stop offset="80%" stop-color="#ff00ff" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    
+    <!-- Pipe pattern -->
+    <pattern id="hexGrid" width="20" height="34.64" patternUnits="userSpaceOnUse">
+      <path d="M10 0 l10 5.77 v11.54 l-10 5.77 l-10 -5.77 v-11.54 z" fill="none" stroke="#0ff" stroke-width="0.5" stroke-opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Layer -->
+  <rect width="100%" height="100%" fill="url(#hexGrid)" />
+
+  <!-- S.AGI Pipes (Gedanken links-rechts) -->
+  <g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left to Center -->
+    <path d="M 0 150 Q 100 150 150 250 T 180 300" stroke="#ff00ff" class="data-pipe" />
+    <path d="M 0 450 Q 100 450 150 350 T 180 300" stroke="#00ffff" class="data-pipe" style="animation-delay: -0.5s; stroke-dasharray: 15 15;" />
+    <path d="M 50 300 L 150 300" stroke="url(#cyanMagenta)" class="data-pipe" style="animation-delay: -1s;" />
+    
+    <!-- Right to Center -->
+    <path d="M 400 150 Q 300 150 250 250 T 220 300" stroke="#00ffff" class="data-pipe" style="animation-delay: -0.2s;" />
+    <path d="M 400 450 Q 300 450 250 350 T 220 300" stroke="#ff00ff" class="data-pipe" style="animation-delay: -0.7s; stroke-dasharray: 15 15;" />
+    <path d="M 350 300 L 250 300" stroke="url(#cyanMagenta)" class="data-pipe" style="animation-delay: -1.2s;" />
+  </g>
+
+  <!-- Thought Nodes (Data Hubs) -->
+  <g class="thought-node">
+    <!-- Left side nodes -->
+    <circle cx="50" cy="150" r="4" fill="#ff00ff" />
+    <circle cx="50" cy="450" r="4" fill="#00ffff" />
+    <circle cx="50" cy="300" r="6" fill="#fff" filter="drop-shadow(0 0 5px #0ff)" />
+    <!-- Right side nodes -->
+    <circle cx="350" cy="150" r="4" fill="#00ffff" />
+    <circle cx="350" cy="450" r="4" fill="#ff00ff" />
+    <circle cx="350" cy="300" r="6" fill="#fff" filter="drop-shadow(0 0 5px #f0f)" />
+  </g>
+
+  <!-- Core Element (Dreieck & Kreis Fadenkreuz) -->
+  <g class="core-glow">
+    <!-- Outer Ring -->
+    <circle cx="200" cy="300" r="100" fill="none" stroke="#00ffff" stroke-width="1" stroke-dasharray="4 8" class="ring-slow" />
+    <!-- Inner Energy Ring -->
+    <circle cx="200" cy="300" r="85" fill="none" stroke="#ff00ff" stroke-width="2" stroke-dasharray="30 10 10 10" class="ring-fast" />
+    
+    <!-- Crosshair / Scope -->
+    <g class="crosshair">
+      <circle cx="200" cy="300" r="120" fill="none" stroke="#00ffff" stroke-width="1" opacity="0.5" />
+      <line x1="80" y1="300" x2="160" y2="300" stroke="#ff00ff" stroke-width="2" />
+      <line x1="320" y1="300" x2="240" y2="300" stroke="#ff00ff" stroke-width="2" />
+      <line x1="200" y1="180" x2="200" y2="260" stroke="#ff00ff" stroke-width="2" />
+      <line x1="200" y1="420" x2="200" y2="340" stroke="#ff00ff" stroke-width="2" />
+      
+      <!-- Triangle (Dreieck) -->
+      <polygon points="200,220 269.28,340 130.72,340" fill="none" stroke="url(#cyanMagenta)" stroke-width="3" filter="drop-shadow(0 0 5px #ff00ff)" />
+      
+      <!-- Center Core Point -->
+      <circle cx="200" cy="300" r="8" fill="url(#coreGradient)" />
+      <!-- Target brackets -->
+      <path d="M 170 270 L 160 270 L 160 280 M 230 270 L 240 270 L 240 280 M 160 320 L 160 330 L 170 330 M 240 320 L 240 330 L 230 330" fill="none" stroke="#00ffff" stroke-width="2" />
+    </g>
+  </g>
+
+  <!-- Digital Data Stream Overlay -->
+  <g font-family="monospace" font-size="8" fill="#00ffff" opacity="0.6">
+    <text x="20" y="580" animation="blink 2s infinite">SYS.AGI PIPE :: ACTIVE</text>
+    <text x="260" y="580" animation="blink 1.5s infinite">EVOLUTION: BIONIC+NN</text>
+    <text x="175" y="30" fill="#ff00ff">O(1) // ROOT</text>
+  </g>
+</svg>

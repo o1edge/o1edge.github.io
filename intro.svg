@@ -1,0 +1,134 @@
+<!-- [2026-08-04] [SVG, Stitch-Bro, O(1), Animated Icon] - Organized by Gemini -->
+<svg viewBox="0 0 1080 1920" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes pulseAndShatter {
+      0% { transform: scale(1); opacity: 1; }
+      20% { transform: scale(1.1); opacity: 1; }
+      40% { transform: scale(0.9); opacity: 1; }
+      50% { transform: scale(4); opacity: 0; }
+      100% { transform: scale(4); opacity: 0; }
+    }
+    @keyframes rainDrop {
+      0%, 45% { transform: translate(0, 0) scale(0); opacity: 0; }
+      50% { transform: translate(0, 0) scale(1); opacity: 1; }
+      90%, 100% { transform: translate(var(--endX), var(--endY)) scale(var(--s)); opacity: 0; }
+    }
+    .logo {
+      animation: pulseAndShatter 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      transform-origin: 540px 960px;
+    }
+    .rain {
+      animation: rainDrop 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      font-family: monospace;
+      font-weight: bold;
+      opacity: 0;
+      transform-origin: center;
+    }
+  </style>
+  <rect width="100%" height="100%" fill="#030610"/>
+  <g class="logo">
+    <circle cx="540" cy="960" r="200" fill="none" stroke="#00ffcc" stroke-width="10"/>
+    <text x="540" y="990" font-family="sans-serif" font-weight="900" font-size="120" fill="#ff00aa" text-anchor="middle">O(1)</text>
+    <circle cx="540" cy="960" r="220" fill="none" stroke="#00a8ff" stroke-width="4" stroke-dasharray="20 10"/>
+  </g>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -466.61px; --endY: 27.71px; --s: 4.75;">1</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 155.47px; --endY: -553.09px; --s: 4.93;">2</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 81.59px; --endY: -453.75px; --s: 1.93;">3</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: -525.78px; --endY: -1202.29px; --s: 3.71;">4</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 522.71px; --endY: 345.63px; --s: 4.43;">5</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -147.28px; --endY: -400.65px; --s: 4.45;">6</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 291.57px; --endY: 255.41px; --s: 2.63;">7</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 91.29px; --endY: 1013.06px; --s: 1.37;">8</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 1036.10px; --endY: 882.21px; --s: 2.51;">9</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -956.15px; --endY: 220.88px; --s: 2.12;">10</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -143.82px; --endY: -508.10px; --s: 1.21;">11</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 392.67px; --endY: 483.85px; --s: 3.11;">12</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -21.63px; --endY: 357.43px; --s: 4.14;">13</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 735.98px; --endY: -332.62px; --s: 3.55;">14</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 993.40px; --endY: 916.46px; --s: 1.19;">15</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 650.65px; --endY: -1104.73px; --s: 4.12;">16</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -417.55px; --endY: -1002.65px; --s: 1.31;">17</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -823.46px; --endY: 18.27px; --s: 2.50;">18</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -638.44px; --endY: 17.61px; --s: 3.54;">19</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -616.64px; --endY: 481.25px; --s: 4.60;">20</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 914.45px; --endY: -136.40px; --s: 2.41;">21</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -468.19px; --endY: 1355.14px; --s: 4.20;">22</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -1231.09px; --endY: 306.59px; --s: 3.84;">23</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: -199.82px; --endY: 486.30px; --s: 1.72;">24</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 245.08px; --endY: -476.83px; --s: 4.29;">25</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 764.67px; --endY: 11.11px; --s: 2.43;">26</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 554.93px; --endY: 209.95px; --s: 1.02;">27</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 1164.92px; --endY: 360.16px; --s: 2.37;">28</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: -1292.96px; --endY: 194.82px; --s: 2.36;">29</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -1437.33px; --endY: 388.91px; --s: 4.67;">30</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -974.37px; --endY: -15.83px; --s: 4.83;">31</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 1188.67px; --endY: -591.51px; --s: 1.68;">32</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 597.76px; --endY: 341.14px; --s: 4.13;">33</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -1318.51px; --endY: -127.98px; --s: 4.32;">34</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 578.93px; --endY: -407.34px; --s: 1.74;">35</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 572.73px; --endY: -581.99px; --s: 1.50;">36</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -1442.47px; --endY: -286.77px; --s: 1.44;">37</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 981.65px; --endY: -782.43px; --s: 2.20;">38</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 819.34px; --endY: -949.50px; --s: 4.00;">39</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 1057.57px; --endY: -208.85px; --s: 3.69;">40</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -894.06px; --endY: -147.96px; --s: 1.32;">41</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -550.28px; --endY: -221.58px; --s: 1.61;">42</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -503.27px; --endY: 673.40px; --s: 2.00;">43</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -874.15px; --endY: 103.97px; --s: 1.22;">44</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -34.07px; --endY: 434.88px; --s: 1.93;">45</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -998.61px; --endY: 499.30px; --s: 4.00;">46</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 502.43px; --endY: -22.27px; --s: 3.21;">47</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -104.60px; --endY: -520.04px; --s: 3.42;">48</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 293.59px; --endY: 582.26px; --s: 1.99;">49</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 665.27px; --endY: 662.50px; --s: 1.05;">50</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: -115.42px; --endY: 697.38px; --s: 2.62;">51</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -303.65px; --endY: -336.02px; --s: 1.88;">52</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -273.35px; --endY: -153.40px; --s: 3.75;">53</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 654.12px; --endY: -669.85px; --s: 2.98;">54</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 169.98px; --endY: 1112.87px; --s: 3.31;">55</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 1495.85px; --endY: -27.12px; --s: 4.76;">56</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 1177.28px; --endY: -426.36px; --s: 4.37;">57</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -738.07px; --endY: -919.36px; --s: 3.38;">58</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 762.66px; --endY: -288.17px; --s: 2.67;">59</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 589.78px; --endY: -431.26px; --s: 4.15;">60</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 488.75px; --endY: -656.22px; --s: 3.07;">61</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -1145.84px; --endY: 919.79px; --s: 2.50;">62</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 52.04px; --endY: -785.15px; --s: 2.96;">63</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 19.07px; --endY: -1239.37px; --s: 2.80;">64</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 825.36px; --endY: 1092.64px; --s: 2.68;">65</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 1055.85px; --endY: 1016.72px; --s: 3.84;">66</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 671.37px; --endY: 465.64px; --s: 3.10;">67</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -188.90px; --endY: -256.27px; --s: 3.75;">68</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -196.18px; --endY: -757.31px; --s: 1.66;">69</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -523.22px; --endY: 716.41px; --s: 3.31;">70</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -12.42px; --endY: -494.28px; --s: 4.11;">71</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 223.56px; --endY: -373.76px; --s: 2.65;">72</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: -66.33px; --endY: -775.12px; --s: 3.93;">73</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 1184.52px; --endY: -756.94px; --s: 4.77;">74</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 141.05px; --endY: -643.46px; --s: 3.76;">75</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: -376.24px; --endY: -183.63px; --s: 4.05;">76</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -587.97px; --endY: 228.01px; --s: 4.24;">77</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: 1062.69px; --endY: -152.15px; --s: 1.45;">78</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -373.15px; --endY: 1215.88px; --s: 1.24;">79</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: -307.04px; --endY: -637.24px; --s: 1.35;">80</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -444.03px; --endY: -502.17px; --s: 2.76;">81</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -352.66px; --endY: -24.15px; --s: 1.86;">82</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: 195.64px; --endY: 584.71px; --s: 1.15;">83</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 1217.12px; --endY: -568.17px; --s: 3.95;">84</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -648.97px; --endY: 1140.63px; --s: 2.04;">85</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -181.71px; --endY: 873.63px; --s: 3.49;">86</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 817.13px; --endY: 841.96px; --s: 1.54;">87</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 197.60px; --endY: 282.99px; --s: 1.79;">88</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 577.06px; --endY: 66.04px; --s: 4.60;">89</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 425.15px; --endY: 350.63px; --s: 3.84;">90</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: 398.23px; --endY: -96.52px; --s: 1.16;">91</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -555.48px; --endY: -163.74px; --s: 3.81;">92</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 933.87px; --endY: -882.07px; --s: 1.49;">93</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 637.83px; --endY: 898.37px; --s: 1.32;">94</text>
+  <text class="rain" x="540" y="960" fill="#00ffcc" font-size="40" style="--endX: -317.47px; --endY: -668.67px; --s: 1.56;">95</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: 111.83px; --endY: -815.49px; --s: 2.86;">96</text>
+  <text class="rain" x="540" y="960" fill="#39ff14" font-size="40" style="--endX: -897.87px; --endY: -656.56px; --s: 4.83;">97</text>
+  <text class="rain" x="540" y="960" fill="#ff00aa" font-size="40" style="--endX: -1444.85px; --endY: 120.72px; --s: 2.35;">98</text>
+  <text class="rain" x="540" y="960" fill="#00a8ff" font-size="40" style="--endX: -572.01px; --endY: 199.58px; --s: 2.94;">99</text>
+  <text class="rain" x="540" y="960" fill="#ffd700" font-size="40" style="--endX: 71.18px; --endY: -365.90px; --s: 1.53;">100</text>
+</svg>

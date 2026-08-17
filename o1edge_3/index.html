@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="o1edge - Feynman Ideomotor. Ein experimentelles, interaktives Neurofeedback-Interface in Echtzeit.">
+    <meta name="author" content="Micha Barlozweski">
+    <link rel="author" href="https://micha1a.github.io">
+    <link rel="canonical" href="https://o1edge.github.io/o1edge_3/">
+    
+    <!-- OpenGraph (Facebook/LinkedIn) -->
+    <meta property="og:title" content="o1edge_3 · Feynman Ideomotor">
+    <meta property="og:description" content="Bare-Metal O(1) Architektur, Zero-Allocation WebGL und direktionales Neurofeedback by Micha Barlozweski.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://o1edge.github.io/o1edge_3/">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="o1edge_3 · Feynman Ideomotor">
+    <meta name="twitter:description" content="Bare-Metal O(1) Architektur, Zero-Allocation WebGL und direktionales Neurofeedback by Micha Barlozweski.">
+    <meta name="twitter:creator" content="@MichaBarlozweski">
+    <title>o1edge_3 · Feynman Ideomotor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- DESKTOP BLOCKER -->
+    <div id="desktop-blocker">
+        <div class="glitch-container">
+            <h1 class="glitch" data-text="TACTILE ENTROPY MISSING">TACTILE ENTROPY MISSING</h1>
+            <p class="subtext">Touch-Gerät erforderlich.</p>
+            <p class="subtext dim">O(1)_BAREMETAL_REJECT</p>
+        </div>
+    </div>
+
+    <!-- MAIN UI (Hidden until AudioContext is active or bypass) -->
+    <div id="bionic-ui" class="hidden">
+        <!-- WebGL Canvas for 3D Foam -->
+        <canvas id="feynman-canvas"></canvas>
+
+        <!-- CORNER INDICATORS — always in DOM -->
+        <div id="indicator-left" class="corner-indicator" aria-hidden="true">
+            <svg viewBox="-20 -20 120 120" width="80" height="80">
+                <polygon id="ind-tri" class="ind-shape-l" points="40,8 8,70 72,70"/>
+                <text class="ind-label" x="40" y="95" text-anchor="middle">LINKS △</text>
+            </svg>
+        </div>
+        <div id="indicator-right" class="corner-indicator" aria-hidden="true">
+            <svg viewBox="-20 -20 120 120" width="80" height="80">
+                <circle id="ind-circ" class="ind-shape-r" cx="40" cy="40" r="28"/>
+                <line id="ind-circ-h" class="ind-shape-r" x1="12" y1="40" x2="68" y2="40" stroke-width="1.5"/>
+                <line id="ind-circ-v" class="ind-shape-r" x1="40" y1="12" x2="40" y2="68" stroke-width="1.5"/>
+                <text class="ind-label" x="40" y="95" text-anchor="middle">RECHTS ⊙</text>
+            </svg>
+        </div>
+
+        <!-- EVOLUTION TRANSITION SEQUENCE (Hidden by default) -->
+        <div id="evolution-overlay" class="overlay hidden">
+            <div class="transition-container">
+                <img src="assets/stitch/transition_evolution.svg" alt="Bionic Evolution Sequence" class="evo-anim">
+                <div class="evo-text">EVOLVING BAREMETAL TO O(1)+NN</div>
+            </div>
+        </div>
+
+        <!-- Init Screen -->
+        <div id="init-overlay">
+            <div class="intro-box">
+                <img class="intro-logo-svg feynman-v2" src="assets/stitch/feynman_core_v2.svg" alt="O(1) Feynman Core">
+                <h2>Homage to Richard Feynman</h2>
+                <p><i>"What I cannot create, I do not understand."</i></p>
+                <div class="opsec-note">⚠ O(1) ISING SECURE · Keine Telemetrie · Zero Allocation</div>
+                <button id="btn-ignite">IGNITE O(1) FIELD+NN</button>
+            </div>
+        </div>
+
+        <!-- FULLSCREEN BUTTON — moved to bottom-left to avoid right-indicator -->
+        <button id="btn-fullscreen" aria-label="Vollbild">
+            <img src="assets/stitch/icon_fullscreen.svg" alt="FS">
+        </button>
+
+        <!-- LEFT MENU — Cyan, Triangle -->
+        <div id="menu-left" class="side-menu">
+            <svg class="menu-bg-shape" viewBox="0 0 200 400" preserveAspectRatio="none">
+                <polygon class="menu-shape-l-bg" points="100,40 10,380 190,380"/>
+            </svg>
+            <div class="menu-content">
+                <svg class="menu-symbol" viewBox="0 0 100 100" width="80" height="80">
+                    <polygon id="menu-tri" class="menu-shape-l" points="50,8 8,88 92,88"/>
+                </svg>
+                <h2>MENÜ</h2>
+                <p class="menu-label">Kollaps: LINKS △</p>
+                <div class="menu-items">
+                    <div class="menu-item">△ Links</div>
+                    <div class="menu-item">▲ Dreieck</div>
+                    <div class="menu-item">◈ Cyan</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT MENU — Magenta, Circle -->
+        <div id="menu-right" class="side-menu">
+            <svg class="menu-bg-shape" viewBox="0 0 200 400" preserveAspectRatio="none">
+                <circle class="menu-shape-r-bg" cx="100" cy="200" r="160"/>
+            </svg>
+            <div class="menu-content">
+                <svg class="menu-symbol" viewBox="0 0 100 100" width="80" height="80">
+                    <circle id="menu-circ" class="menu-shape-r" cx="50" cy="50" r="38"/>
+                    <line class="menu-shape-r" x1="12" y1="50" x2="88" y2="50"/>
+                    <line class="menu-shape-r" x1="50" y1="12" x2="50" y2="88"/>
+                </svg>
+                <h2>HILFE</h2>
+                <p class="menu-label">Kollaps: RECHTS ⊙</p>
+                <div class="menu-items">
+                    <div class="menu-item">⊙ Rechts</div>
+                    <div class="menu-item">○ Kreis</div>
+                    <div class="menu-item">◉ Magenta</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantum Cursor -->
+        <div id="quantum-cursor">
+            <div id="cursor-dot"></div>
+            <div id="cursor-bar-l"></div>
+            <div id="cursor-bar-r"></div>
+        </div>
+
+
+        <!-- HUD -->
+        <div id="hud">
+            <div class="hud-item">
+                <img src="assets/stitch/icon_superposition.svg" class="hud-icon" alt="Superposition Wave">
+                <span id="hud-phase">SUPERPOSITION</span>
+            </div>
+            <div class="hud-item">
+                <img src="assets/stitch/icon_drift.svg" class="hud-icon" alt="Drift Delta">
+                <span id="hud-drift">Δ 0.000</span>
+            </div>
+            <div class="hud-item npu-inactive">
+                <img src="assets/stitch/icon_npu_ising.svg" class="hud-icon npu-icon" alt="NPU Tensor Core">
+                <span>NPU IDLE</span>
+            </div>
+            <!-- Tag link — bottom right -->
+            <a id="tag-link-hud" class="tag-link" href="https://micha1a.github.io" target="_blank" rel="noopener">by: Micha | g.dev/avx</a>
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

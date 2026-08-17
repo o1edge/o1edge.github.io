@@ -1,0 +1,262 @@
+/* =============================================================================
+   o1edge_2 · HAUS IM RAM · O(1)
+   ============================================================================= */
+
+:root {
+    --cyan:    #00FFFF;
+    --magenta: #FF00FF;
+    --dark:    #050508;
+    --text:    rgba(255,255,255,0.85);
+    --dim:     rgba(255,255,255,0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+
+html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    background: var(--dark); color: var(--text);
+    font-family: 'Courier New', monospace; touch-action: none;
+}
+
+.hidden { display: none !important; }
+
+/* ============================================================ DESKTOP BLOCKER */
+#desktop-blocker {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #000; z-index: 999;
+}
+.glitch-container { text-align: center; padding: 20px; }
+.glitch {
+    font-size: clamp(1.2rem, 6vw, 2rem); color: #ff003c;
+    text-shadow: 0 0 12px rgba(255,0,60,0.6); margin-bottom: 16px; position: relative;
+}
+.glitch::before, .glitch::after {
+    content: attr(data-text); position: absolute; top: 0;
+}
+.glitch::before { left: 2px; color: var(--cyan); animation: glitch-a 3s infinite linear alternate-reverse; }
+.glitch::after  { left: -2px; color: var(--magenta); animation: glitch-b 2.5s infinite linear alternate-reverse; }
+@keyframes glitch-a { 0%{clip:rect(10px,9999px,86px,0)} 50%{clip:rect(62px,9999px,32px,0)} 100%{clip:rect(3px,9999px,59px,0)} }
+@keyframes glitch-b { 0%{clip:rect(65px,9999px,100px,0)} 50%{clip:rect(98px,9999px,20px,0)} 100%{clip:rect(10px,9999px,91px,0)} }
+.subtext     { font-size: 0.85rem; color: var(--cyan); margin-top: 8px; }
+.subtext.dim { font-size: 0.7rem; color: #334; letter-spacing: 2px; margin-top: 12px; }
+
+/* ============================================================ MAIN UI */
+#bionic-ui { position: fixed; inset: 0; }
+
+#feynman-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    touch-action: none; z-index: 1;
+}
+
+/* ============================================================ CORNER INDICATORS
+   KEY FIX: NO display:none — only opacity + transform.
+   .show class fades them in. Jumping is prevented. */
+.corner-indicator {
+    position: absolute;
+    top: 16px;
+    z-index: 30;
+    pointer-events: none;
+    opacity: 0.25; /* Always visible but dim */
+    transform: scale(0.85) translateY(-4px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    will-change: opacity, transform;
+}
+.corner-indicator.show {
+    opacity: 1;
+    transform: scale(1.0) translateY(0);
+}
+#indicator-left  { left: 16px; }
+#indicator-right { right: 16px; }
+
+.ind-shape-l {
+    fill: rgba(0,255,255,0.08);
+    stroke: var(--cyan); stroke-width: 2; stroke-linejoin: round;
+    filter: drop-shadow(0 0 5px var(--cyan));
+}
+.ind-shape-r {
+    fill: none;
+    stroke: var(--magenta); stroke-width: 2; stroke-linecap: round;
+    filter: drop-shadow(0 0 5px var(--magenta));
+}
+.ind-label {
+    fill: var(--dim); font-size: 8px;
+    font-family: 'Courier New', monospace; letter-spacing: 1px;
+}
+
+/* ============================================================ FULLSCREEN BUTTON */
+#btn-fullscreen {
+    position: absolute;
+    bottom: 14px; left: 14px; /* moved from top right to bottom left */
+    z-index: 40;
+    background: transparent;
+    border: 1px solid rgba(0,255,255,0.2);
+    width: 36px; height: 36px;
+    border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.2s;
+}
+#btn-fullscreen img { width: 20px; height: 20px; opacity: 0.6; transition: opacity 0.2s; }
+#btn-fullscreen:active { background: rgba(0,255,255,0.1); border-color: rgba(0,255,255,0.6); }
+#btn-fullscreen:active img { opacity: 1; }
+
+/* ============================================================ SIDE MENUS */
+.side-menu {
+    position: absolute; top: 0; bottom: 0; width: 50%;
+    z-index: 20; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: transform 0.45s cubic-bezier(0.175,0.885,0.32,1.275);
+    overflow: hidden; backdrop-filter: blur(8px);
+}
+#menu-left  { left: 0; transform: translateX(-100%); background: linear-gradient(135deg,rgba(0,22,28,0.94),rgba(0,8,12,0.9)); border-right: 1px solid rgba(0,255,255,0.2); }
+#menu-right { right:0; transform: translateX(100%);  background: linear-gradient(225deg,rgba(28,0,28,0.94),rgba(12,0,12,0.9)); border-left: 1px solid rgba(255,0,255,0.2); }
+#menu-left.active  { transform: translateX(0); }
+#menu-right.active { transform: translateX(0); }
+
+.menu-bg-shape { position: absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.menu-shape-l-bg { fill: rgba(0,255,255,0.03); stroke: rgba(0,255,255,0.1); stroke-width: 1; }
+.menu-shape-r-bg { fill: rgba(255,0,255,0.03); stroke: rgba(255,0,255,0.1); stroke-width: 1; }
+
+.menu-content {
+    position: relative; z-index: 2; text-align: center; padding: 20px;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.menu-symbol { margin-bottom: 4px; }
+
+.menu-shape-l {
+    fill: rgba(0,255,255,0.07); stroke: var(--cyan); stroke-width: 2; stroke-linejoin: round;
+    filter: drop-shadow(0 0 8px var(--cyan));
+    animation: pulse-l 2.5s ease-in-out infinite;
+}
+.menu-shape-r {
+    fill: none; stroke: var(--magenta); stroke-width: 2; stroke-linecap: round;
+    filter: drop-shadow(0 0 8px var(--magenta));
+    animation: pulse-r 2.5s ease-in-out infinite;
+}
+@keyframes pulse-l { 0%,100%{filter:drop-shadow(0 0 5px var(--cyan))} 50%{filter:drop-shadow(0 0 14px var(--cyan))} }
+@keyframes pulse-r { 0%,100%{filter:drop-shadow(0 0 5px var(--magenta))} 50%{filter:drop-shadow(0 0 14px var(--magenta))} }
+
+.menu-content h2 { font-size: 1.2rem; letter-spacing: 3px; }
+#menu-left  .menu-content h2 { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+#menu-right .menu-content h2 { color: var(--magenta); text-shadow: 0 0 8px var(--magenta); }
+.menu-label { font-size: 0.65rem; color: var(--dim); letter-spacing: 2px; }
+.menu-items { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.menu-item  {
+    padding: 10px 14px; font-size: 0.85rem; border-radius: 4px;
+    cursor: pointer; letter-spacing: 1px; transition: background 0.2s;
+}
+#menu-left  .menu-item { border: 1px solid rgba(0,255,255,0.22); color: var(--cyan); }
+#menu-right .menu-item { border: 1px solid rgba(255,0,255,0.22); color: var(--magenta); }
+.menu-item:active { filter: brightness(1.5); }
+
+/* ============================================================ QUANTUM CURSOR */
+#quantum-cursor {
+    position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%);
+    width: 220px; height: 4px; display: flex; align-items: center; justify-content: center;
+    z-index: 30; pointer-events: none;
+}
+#cursor-bar-l { height: 2px; width: 0; background: linear-gradient(to left, var(--cyan), transparent); }
+#cursor-bar-r { height: 2px; width: 0; background: linear-gradient(to right, var(--magenta), transparent); }
+#cursor-dot {
+    width: 10px; height: 10px; border-radius: 50%; background: #fff;
+    box-shadow: 0 0 8px #fff, 0 0 20px rgba(255,255,255,0.4);
+    flex-shrink: 0; transition: background 0.15s, box-shadow 0.15s;
+}
+
+/* ============================================================ INIT SCREEN & EVOLUTION */
+#init-overlay, #evolution-overlay {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.88); backdrop-filter: blur(12px); z-index: 50;
+}
+.intro-box {
+    text-align: center; border: 1px solid rgba(255,255,255,0.1);
+    padding: 32px 24px 20px; border-radius: 12px; max-width: 88%;
+    background: rgba(10,10,18,0.65);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.intro-logo-svg { width: 120px; height: 120px; margin-bottom: -10px; filter: drop-shadow(0 0 10px rgba(0,255,255,0.4)); }
+.intro-box h2 { font-size: 1.1rem; color: rgba(0,255,255,0.9); }
+.intro-box p  { font-size: 0.85rem; color: var(--dim); }
+.opsec-note {
+    font-size: 0.6rem; color: rgba(255,80,80,0.8);
+    border: 1px solid rgba(255,80,80,0.3); border-radius: 4px;
+    padding: 6px 10px; letter-spacing: 1px;
+}
+#btn-ignite {
+    background: transparent; color: var(--cyan);
+    border: 1px solid var(--cyan); padding: 14px 28px;
+    font-size: 1rem; font-family: inherit; border-radius: 4px;
+    text-shadow: 0 0 8px var(--cyan); box-shadow: 0 0 12px rgba(0,255,255,0.15);
+    cursor: pointer; letter-spacing: 2px; transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent; margin-top: 4px;
+}
+#btn-ignite:active { background: var(--cyan); color: #000; box-shadow: 0 0 28px var(--cyan); }
+
+/* ============================================================ TAG LINK (g.dev/avx) */
+.tag-link {
+    color: rgba(0,255,255,0.4);
+    font-size: 0.6rem; font-family: 'Courier New', monospace;
+    letter-spacing: 2px; text-decoration: none;
+    transition: color 0.2s;
+}
+.tag-link:hover, .tag-link:active { color: var(--cyan); }
+.intro-tag { margin-top: 4px; }
+
+/* Fixed bottom-right position for HUD tag */
+#tag-link-hud {
+    position: absolute;
+    bottom: 0px; right: 0px;
+    z-index: 40;
+    pointer-events: auto; /* Required because parent #hud has pointer-events: none */
+}
+
+/* ============================================================ HUD */
+#hud {
+    position: absolute; bottom: 16px; left: 60px; right: 20px;
+    display: flex; justify-content: space-between; padding: 0;
+    font-size: 0.65rem; color: var(--dim);
+    letter-spacing: 2px; z-index: 30; pointer-events: none;
+    align-items: center;
+}
+.hud-item { display: flex; align-items: center; gap: 6px; }
+.hud-icon { width: 14px; height: 14px; opacity: 0.8; }
+.npu-inactive { opacity: 0.25; filter: grayscale(100%); transition: all 0.5s; }
+.npu-active { opacity: 1.0; filter: drop-shadow(0 0 5px var(--cyan)); color: var(--cyan); transition: all 0.5s; }
+.npu-icon { width: 16px; height: 16px; }
+
+/* EVOLUTION TRANSITION SEQUENCE */
+.transition-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: evo-fade-in 0.5s ease forwards;
+}
+.evo-anim {
+    width: 90vw;
+    max-width: 300px;
+    height: auto;
+    max-height: 60vh;
+    margin-bottom: 2rem;
+    filter: drop-shadow(0 0 20px var(--cyan));
+}
+.evo-text {
+    font-size: 1.2rem;
+    color: var(--cyan);
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px var(--cyan);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+}
+@keyframes evo-fade-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.feynman-v2 {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+}

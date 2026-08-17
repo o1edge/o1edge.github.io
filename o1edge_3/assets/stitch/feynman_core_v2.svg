@@ -1,0 +1,88 @@
+<!-- [2026-08-04] [SVG, Stitch-Bro, O(1), Animated Icon] - Organized by Gemini -->
+<svg viewBox="0 0 200 200" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes flow-right { to { stroke-dashoffset: -30; } }
+    @keyframes flow-left { to { stroke-dashoffset: 30; } }
+    @keyframes spin-cw { 100% { transform: rotate(360deg); } }
+    @keyframes spin-ccw { 100% { transform: rotate(-360deg); } }
+    @keyframes pulse-node { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.4); opacity: 1; box-shadow: none; } }
+    @keyframes float-merge { 0%, 100% { transform: translateY(-3px); } 50% { transform: translateY(3px); } }
+    .bg { fill: #030610; }
+    
+    /* Left Duality: Triangle */
+    .left-geom { stroke: #00ffff; stroke-width: 1.5; fill: none; }
+    .left-geom-inner { stroke: #00a8ff; stroke-width: 2; fill: none; stroke-dasharray: 4 6; }
+    
+    /* Right Duality: Circle */
+    .right-geom { stroke: #ff00ff; stroke-width: 1.5; fill: none; }
+    .right-geom-inner { stroke: #ff00aa; stroke-width: 2; fill: none; stroke-dasharray: 6 4; }
+    
+    /* Quantum connections */
+    .photon-top { fill: none; stroke: #ffd700; stroke-width: 1.5; stroke-dasharray: 5 3; animation: flow-right 2s linear infinite; }
+    .photon-bottom { fill: none; stroke: #39ff14; stroke-width: 1.5; stroke-dasharray: 5 3; animation: flow-left 2s linear infinite; }
+    
+    /* Core merge elements */
+    .feynman-loop { fill: none; stroke: #00ffff; stroke-width: 1.5; stroke-dasharray: 2 4 8 4; animation: spin-cw 10s linear infinite; transform-origin: 100px 100px; }
+    .feynman-inner { fill: none; stroke: #ff00ff; stroke-width: 1.5; stroke-dasharray: 10 5; animation: spin-ccw 8s linear infinite; transform-origin: 100px 100px; }
+    
+    .node-cyan { fill: #00ffff; transform-origin: center; animation: pulse-node 2s ease-in-out infinite; }
+    .node-magenta { fill: #ff00ff; transform-origin: center; animation: pulse-node 2.5s ease-in-out infinite; }
+    .node-gold { fill: #ffd700; transform-origin: center; animation: pulse-node 1.5s ease-in-out infinite; }
+    
+    .center-merge { transform-origin: 100px 100px; animation: float-merge 3s ease-in-out infinite; }
+  </style>
+  <rect class="bg" width="200" height="200"/>
+  
+  <!-- Subatomic vacuum grid (static background) -->
+  <g stroke="#ffffff" stroke-width="0.2" opacity="0.2">
+    <line x1="0" y1="100" x2="200" y2="100" stroke-dasharray="2 2" />
+    <line x1="100" y1="0" x2="100" y2="200" stroke-dasharray="2 2" />
+    <circle cx="100" cy="100" r="85" fill="none" />
+  </g>
+
+  <!-- Left Geometric: The Triangle (Origin ~ x=50) -->
+  <g>
+    <!-- Outer sharp triangle -->
+    <polygon class="left-geom" points="50,30 10,130 90,130" />
+    <polygon class="left-geom-inner" points="50,45 25,120 75,120" />
+    <!-- Center vertex for triangle -->
+    <line x1="50" y1="30" x2="50" y2="100" stroke="#00ffff" stroke-width="1" opacity="0.5"/>
+    <line x1="10" y1="130" x2="50" y2="100" stroke="#00ffff" stroke-width="1" opacity="0.5"/>
+    <line x1="90" y1="130" x2="50" y2="100" stroke="#00ffff" stroke-width="1" opacity="0.5"/>
+    <circle class="node-cyan" cx="50" cy="100" r="4" style="transform-origin: 50px 100px;" />
+  </g>
+
+  <!-- Right Geometric: The Circle (Origin ~ x=150) -->
+  <g>
+    <!-- Outer circle -->
+    <circle class="right-geom" cx="150" cy="100" r="45" />
+    <circle class="right-geom-inner" cx="150" cy="100" r="35" />
+    <!-- Radial spokes -->
+    <line x1="150" y1="55" x2="150" y2="145" stroke="#ff00ff" stroke-width="1" opacity="0.5"/>
+    <line x1="105" y1="100" x2="195" y2="100" stroke="#ff00ff" stroke-width="1" opacity="0.5"/>
+    <circle class="node-magenta" cx="150" cy="100" r="4" style="transform-origin: 150px 100px;" />
+  </g>
+
+  <!-- Quantum Exchange (Feynman Diagrams Paths) -->
+  <!-- Upper photon exchange -->
+  <path class="photon-top" d="M 50 100 Q 100 40 150 100" />
+  <!-- Lower gluon exchange -->
+  <path class="photon-bottom" d="M 150 100 Q 100 160 50 100" />
+  
+  <!-- The Complex Merging Core -->
+  <g class="center-merge">
+     <!-- Rotating dual rings -->
+     <circle class="feynman-loop" cx="100" cy="100" r="28" />
+     <circle class="feynman-inner" cx="100" cy="100" r="20" />
+     
+     <!-- Intersecting diamond (VRAM friendly merge representation) -->
+     <polygon fill="none" stroke="#00a8ff" stroke-width="1.5" points="100,75 125,100 100,125 75,100" class="feynman-loop" />
+     
+     <!-- Core interaction vertices -->
+     <circle class="node-gold" cx="100" cy="100" r="5" style="transform-origin: 100px 100px;" />
+  </g>
+
+  <!-- Peripheral Vertices / Scatter points -->
+  <circle class="node-cyan" cx="100" cy="70" r="3" style="transform-origin: 100px 70px;" />
+  <circle class="node-magenta" cx="100" cy="130" r="3" style="transform-origin: 100px 130px;" />
+</svg>
